@@ -29,6 +29,13 @@ print("text data: "+ text_data)  # Optional: To check the content read from the 
 print("Start Tokenizing the data")
 tokens = word_tokenize(text_data)
 
+# Remove stop words
+print("Start Removing stop words")
+stop_words = set(stopwords.words('english'))
+tokens_without_stopwords = [word for word in tokens if word.lower() not in stop_words]
+
 # Output results
 print("Original Tokens:", tokens)
+print("**********************************************************\n")
+print("Tokens after Stopword Removal:", tokens_without_stopwords)
 print("**********************************************************\n")
