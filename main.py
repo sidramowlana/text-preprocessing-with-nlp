@@ -34,8 +34,19 @@ print("Start Removing stop words")
 stop_words = set(stopwords.words('english'))
 tokens_without_stopwords = [word for word in tokens if word.lower() not in stop_words]
 
+# Spell checking and correcting misspelled words
+spell = SpellChecker()
+misspelled = spell.unknown(tokens_without_stopwords)
+print("Start Correcting")
+correct_text = [spell.correction(word) for word in tokens_without_stopwords]
+# Filter out None values from the corrected text
+correct_text = [word for word in correct_text if word is not None]
+
 # Output results
 print("Original Tokens:", tokens)
 print("**********************************************************\n")
 print("Tokens after Stopword Removal:", tokens_without_stopwords)
 print("**********************************************************\n")
+print("Correct Text after spell correction:", correct_text)
+print("**********************************************************\n")
+
