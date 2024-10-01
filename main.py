@@ -42,11 +42,23 @@ correct_text = [spell.correction(word) for word in tokens_without_stopwords]
 # Filter out None values from the corrected text
 correct_text = [word for word in correct_text if word is not None]
 
+# Stemming the corrected words
+stemmer = PorterStemmer()
+stemmed_words = [stemmer.stem(word) for word in correct_text]
+# Lemmatization using Spacy
+lemmatized_words = [token.lemma_ for token in nlp(" ".join(correct_text))]
+
 # Output results
+print("****************************Begin*****************************\*\n")
 print("Original Tokens:", tokens)
 print("**********************************************************\n")
 print("Tokens after Stopword Removal:", tokens_without_stopwords)
 print("**********************************************************\n")
 print("Correct Text after spell correction:", correct_text)
 print("**********************************************************\n")
+print("Stemmed Words:", stemmed_words)
+print("**********************************************************\n")
+print("Lemmatized Words:", lemmatized_words)
+print("****************************End******************************\n")
+
 
